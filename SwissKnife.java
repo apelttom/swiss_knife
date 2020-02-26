@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Scanner;
 
 /* This is a simple Java program that helps me solving
 	problems during my work in the corporate.
@@ -26,17 +25,20 @@ class SwissKnife
         String output = "";
         try{
             File file = new File(accessRightsOnLinesPath);
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNext()){
-                String line = scanner.next();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = "";
+            while((line = br.readLine()) != null){
                 if(line.contains(ACCESS_RIGHT_VARONIS_KEYWORD)){
                     String parsedLine = line.substring(line.indexOf("\\"));
                     output = output + parsedLine + ";";
                 }
             }
-            scanner.close();
-		}
-		catch (FileNotFoundException e){
+            br.close();
+        }
+        catch (FileNotFoundException e){
+            System.err.println("An error occured during opening of " + accessRightsOnLinesPath);
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
             System.err.println("An error occured during opening of " + accessRightsOnLinesPath);
             System.err.println(e.getMessage());
         }
