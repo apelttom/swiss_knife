@@ -25,7 +25,10 @@ class SwissKnife
         String output = "";
         try{
             File file = new File(accessRightsOnLinesPath);
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(
+                    new FileInputStream(file), "UTF-8"
+                ));
             String line = "";
             while((line = br.readLine()) != null){
                 if(line.contains(ACCESS_RIGHT_VARONIS_KEYWORD)){
