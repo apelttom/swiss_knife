@@ -31,7 +31,7 @@ class SwissKnife
                 String line = scanner.next();
                 if(line.contains(ACCESS_RIGHT_VARONIS_KEYWORD)){
                     String parsedLine = line.substring(line.indexOf("\\"));
-                    output = output + parsedLine;
+                    output = output + parsedLine + ";";
                 }
             }
             scanner.close();
