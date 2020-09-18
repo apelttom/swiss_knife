@@ -1,7 +1,10 @@
 import java.net.*;
 import java.io.*;
+import java.awt.Point;
 import java.awt.Robot;
-import java.util.Random;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.InputEvent;
+//import java.util.Random;
 
 /* This is a simple Java program that helps me solving
 	problems during my work in the corporate.
@@ -13,8 +16,9 @@ class SwissKnife
     private static final String MOUSE_MOVER = "moveMouse";
     private static final String DATA_FIELDS_FINDER = "searchDataField";
     private static final int FIVE_SECONDS = 5000;
-    private static final int MAX_X = 400;
-    private static final int MAX_Y = 400;
+    // deprecated
+    //private static final int MAX_X = 400;
+    //private static final int MAX_Y = 400;
 
     // Program begins with a call to main().
     public static void main(String args[]) throws Exception
@@ -28,10 +32,14 @@ class SwissKnife
         } else if(args.length == 1) {
           if(args[0].equals(MOUSE_MOVER)) {
             Robot robot = new Robot();
-            Random random = new Random();
+            //Random random = new Random();
+            
+            Point centerPoint = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 
             while(true) {
-              robot.mouseMove(random.nextInt(MAX_X), random.nextInt(MAX_Y));
+              robot.mouseMove(centerPoint.x, centerPoint.y);
+              robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+              robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
               Thread.sleep(FIVE_SECONDS);
             }
           }
